@@ -19,15 +19,13 @@ elixir(function(mix) {
             'libs/bootstrap.css',
             'libs/font-awesome.css',
             'libs/metisMenu.css',
-            'libs/sb-admin-2.css',
-            'libs/styles.css'
+            'libs/sb-admin-2.css'
         ], './public/css/main.css')
 
         .scripts([
-            'libs/bootstrap.js',
             'libs/jquery.js',
+            'libs/bootstrap.js',
             'libs/metisMenu.js',
-            'libs/sb-admin-2.js',
-            'libs/scripts.js'
+            'libs/sb-admin-2.js'
         ], './public/js/main.js');
 });
