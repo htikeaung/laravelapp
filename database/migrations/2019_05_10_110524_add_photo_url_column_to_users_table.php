@@ -13,7 +13,7 @@ class AddPhotoUrlColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('photo_path');
+            $table->integer('photo_id');
         });
     }
 
@@ -25,7 +25,7 @@ class AddPhotoUrlColumnToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('photo_path');
+            $table->dropColumn('photo_id');
         });
     }
 }

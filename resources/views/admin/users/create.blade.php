@@ -29,8 +29,8 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('file', 'Upload photo: ') !!}
-            {!! Form::file('photo_path', ['class'=>'form-control']) !!}
+            {!! Form::label('photo_id', 'Upload photo: ') !!}
+            {!! Form::file('photo_id', ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

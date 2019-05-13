@@ -18,7 +18,7 @@ class User extends Authenticatable
         'password',
         'is_active',
         'role_id',
-        'photo_path',
+        'photo_id',
 
     ];
 
