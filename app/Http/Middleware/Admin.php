@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class Admin
 {
@@ -15,6 +17,20 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+
+        if(Auth::check()){
+
+            if(Auth::user()->isAdmin()){
+
+                return $next($request);
+
+            }
+
+        }
+
+        Session::flash('restricted_user', 'You have no permission to access this area! Please contact your administrator.');
+
+        return redirect('/');
+
     }
 }

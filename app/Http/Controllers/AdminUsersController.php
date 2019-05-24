@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUsersController extends Controller
 {
@@ -56,7 +57,7 @@ class AdminUsersController extends Controller
 
             $inputs = $request->all();
 
-            $inputs['password'] = bcrypt($request->password);
+            $inputs['password'] = Hash::make($request->password);
 
         }
 
@@ -73,6 +74,8 @@ class AdminUsersController extends Controller
         }
 
         User::create($inputs);
+
+        $request->session()->flash('create_user', 'User created.');
 
 //return $inputs;
         return redirect('/admin/users');
@@ -123,7 +126,9 @@ class AdminUsersController extends Controller
 
             $inputs = $request->all();
 
-            $inputs['password'] = bcrypt($request->password);
+//            $inputs['password'] = bcrypt();
+
+            $inputs['password'] = Hash::make($request->password);
 
         }
 
@@ -141,6 +146,8 @@ class AdminUsersController extends Controller
 
         User::findOrFail($id)->update($inputs);
 
+        session()->flash('update_user', 'User updated');
+
         return redirect('/admin/users');
 
     }
@@ -153,6 +160,16 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $user = User::findOrFail($id);
+
+        unlink(public_path().$user->photo->file);
+
+        $user->delete();
+
+        session()->flash('delete_user', 'User deleted.');
+
+        return redirect('/admin/users');
+
     }
 }

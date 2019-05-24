@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,9 +23,21 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/admin', function(){
 
+//    if(Auth::check()) {
+//        $userName = Auth::user()->name;
+//    }
+
     return view('admin.index');
 
 });
 
+Route::group(['middleware'=>'admin'], function(){
 
-Route::resource('/admin/users', 'AdminUsersController');
+
+    Route::resource('/admin/users', 'AdminUsersController');
+
+    Route::resource('/admin/posts', 'AdminPostsController');
+
+});
+
+

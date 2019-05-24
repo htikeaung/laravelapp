@@ -9,7 +9,25 @@
 
     <h1>Users list</h1>
 
+    @if(session()->has('create_user'))
 
+        <div class="alert alert-success">
+            <strong>Success!</strong> {{session('create_user')}}
+        </div>
+
+    @elseif(session()->has('update_user'))
+
+        <div class="alert alert-success">
+            <strong>Success!</strong> {{session('update_user')}}
+        </div>
+
+    @elseif(session()->has('delete_user'))
+
+        <div class="alert alert-success">
+            <strong>Success!</strong> {{session('delete_user')}}
+        </div>
+
+    @endif
 
     <table class="table table-striped">
         <thead>
