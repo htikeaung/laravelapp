@@ -28,7 +28,7 @@ class Admin
 
         }
 
-        Session::flash('restricted_user', 'You have no permission to access this area! Please contact your administrator.');
+        Session::flash('restricted_user', 'You have no permission to access admin area! Please contact your administrator.');
 
         return redirect('/');
 
